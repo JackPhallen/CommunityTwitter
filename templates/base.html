@@ -1,0 +1,21 @@
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tweet Commune</title>
+
+    {% block head %}{% endblock head %}
+</head>
+<body>
+
+    <div id="page" class="container-fluid m-2">
+        {% bootstrap_messages %}
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+</html>
