@@ -30,7 +30,7 @@ class EmailTweeter:
         :param body: Body of the email
         :return:
         """
-        return "Subject: {0}\n\n{1}".format(self._config.subject, body)
+        return "Subject: {0}\n\n{1}".format(self._config.subject, body).encode('utf-8')
 
     def send_tweet(self, tweet):
         """
