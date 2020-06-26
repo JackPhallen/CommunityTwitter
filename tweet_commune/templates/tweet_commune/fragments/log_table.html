@@ -1,0 +1,28 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Level</th>
+        <th scope="col">Timestamp</th>
+        <th scope="col">Message</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for entry in log_entries %}
+
+        <tr class="{{ entry.row_class }}">
+            <th scope="row"><u> {{ entry.get_level_display }} </u></th>
+            <td>{{ entry.timestamp }}</td>
+            <td>{{ entry.message | truncatechars:75 }}</td>
+            <td>
+                <a href="{% url 'logentry_detail' entry.id %}" class="badge badge-pill badge-dark">
+                    Details
+                </a>
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
