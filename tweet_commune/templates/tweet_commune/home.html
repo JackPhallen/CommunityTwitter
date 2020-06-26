@@ -2,6 +2,8 @@
 
 {% block content %}
 
+    {% include 'tweet_commune/fragments/status_warning.html' %}
+
     <div class="jumbotron">
 
         <h1 class="display-4">The Tweet Commune</h1>
@@ -22,10 +24,13 @@
 
     </div>
 
+
+
     <div class="card my-5">
         <div class="card-header">
             <h2 class="card-title">Queue Info</h2>
         </div>
+
         <div class="card-body">
 
             <p class="card-text">
@@ -35,6 +40,20 @@
                     There is currently <u>{{ queue_length }}</u> Tweet in the queue.
                 {% endif %}
             </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card my-5">
+        <div class="card-header">
+            <h2 class="card-title">Logs</h2>
+            <a href="{% url 'logentry_list' %}"> View More </a>
+        </div>
+        <div class="card-body">
+
+            {% include 'tweet_commune/fragments/log_table.html' %}
 
         </div>
     </div>

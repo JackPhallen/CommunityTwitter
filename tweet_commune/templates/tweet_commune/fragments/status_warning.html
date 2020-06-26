@@ -1,0 +1,6 @@
+{#Display error if is_up is False#}
+{% if not is_up %}
+    <div class="alert alert-danger" role="alert">
+      WARNING: We are currently experiencing problems posting tweets :(
+    </div>
+{% endif %}

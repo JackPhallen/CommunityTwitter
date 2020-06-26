@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
-from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from tweet_commune.models.submission import Submission
+from tweet_commune.models.log_entry import LogEntry
 from ..forms import SubmissionModelForm
 
 
@@ -15,4 +15,6 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['queue_length'] = Submission.queue.all().count()
+        context['log_entries'] = LogEntry.LogManager.top()
+        context['is_up'] = LogEntry.LogManager.is_up()
         return context
