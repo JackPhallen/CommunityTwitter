@@ -11,5 +11,5 @@ class SubmissionCreateView(SuccessMessageMixin, CreateView):
     """
     model = Submission
     form_class = SubmissionModelForm
-    success_url = reverse_lazy("submission_list")
+    success_url = reverse_lazy("home")
     success_message = 'Success!'
