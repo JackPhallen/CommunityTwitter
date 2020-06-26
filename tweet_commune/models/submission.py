@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_text
+from django.utils.translation import ugettext_lazy as _
 
 
 class SubmissionManager(models.Manager):

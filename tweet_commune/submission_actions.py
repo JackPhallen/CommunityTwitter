@@ -1,6 +1,6 @@
+from tweet_commune.tweet_blaster import _CONFIG_PATH, _PROFILE
 from tweet_commune.tweet_blaster.email_config import EmailConfig
 from tweet_commune.tweet_blaster.email_tweeter import EmailTweeter
-from tweet_commune.tweet_blaster import _CONFIG_PATH, _PROFILE
 from .logger.tweet_logger import TweetLogger
 
 

@@ -1,6 +1,7 @@
-from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
 from tweet_commune.models.submission import Submission
 from ..forms import SubmissionModelForm
 

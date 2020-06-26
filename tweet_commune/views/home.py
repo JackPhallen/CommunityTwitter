@@ -1,8 +1,7 @@
 from django.views.generic import TemplateView
-from django.urls import reverse_lazy
-from tweet_commune.models.submission import Submission
+
 from tweet_commune.models.log_entry import LogEntry
-from ..forms import SubmissionModelForm
+from tweet_commune.models.submission import Submission
 
 
 class HomeView(TemplateView):

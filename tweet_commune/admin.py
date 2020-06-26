@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from tweet_commune.models.submission import Submission
 from .forms import SubmissionModelForm
 

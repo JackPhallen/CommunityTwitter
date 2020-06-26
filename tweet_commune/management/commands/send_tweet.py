@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
-from ...models.submission import Submission
+
 from tweet_commune.submission_actions import SubmissionActions
 from ...logger.tweet_logger import TweetLogger
+from ...models.submission import Submission
 
 
 class Command(BaseCommand):

@@ -1,6 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.base import ContextMixin
-from django.urls import reverse_lazy
+
 from ..models.log_entry import LogEntry
 
 
