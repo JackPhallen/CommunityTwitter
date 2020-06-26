@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm, Textarea
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_text
