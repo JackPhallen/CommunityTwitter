@@ -1,4 +1,4 @@
-from tweet_commune.tweet_blaster import _CONFIG_PATH, _PROFILE
+from tweet_commune.tweet_blaster import _CONFIG_PATH, _PROFILE, _IMG_PROFILE
 from tweet_commune.tweet_blaster.email_config import EmailConfig
 from tweet_commune.tweet_blaster.email_tweeter import EmailTweeter
 from .logger.tweet_logger import TweetLogger
@@ -17,10 +17,14 @@ class SubmissionActions:
         Posts a submission to Twitter
         """
         try:
-
-            config = EmailConfig(_CONFIG_PATH, _PROFILE)
-            tweeter = EmailTweeter(config)
-            tweeter.send_tweet(self.submission.text)
+            if self.submission.image:
+                config = EmailConfig(_CONFIG_PATH, _IMG_PROFILE)
+                tweeter = EmailTweeter(config)
+                tweeter.send_tweet(self.submission.text, img_path=self.submission.image.path)
+            else:
+                config = EmailConfig(_CONFIG_PATH, _PROFILE)
+                tweeter = EmailTweeter(config)
+                tweeter.send_tweet(self.submission.text)
             self.submission.sent = True
             self.submission.save()
             TweetLogger.success(self.submission.text)
