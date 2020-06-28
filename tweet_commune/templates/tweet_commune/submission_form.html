@@ -9,7 +9,7 @@
 
     <h2>Enter Tweet below:</h2>
 
-    <form method="post" class="form">
+    <form method="post" enctype="multipart/form-data" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}
 
