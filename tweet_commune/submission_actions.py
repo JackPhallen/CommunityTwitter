@@ -20,7 +20,10 @@ class SubmissionActions:
 
             config = EmailConfig(_CONFIG_PATH, _PROFILE)
             tweeter = EmailTweeter(config)
-            tweeter.send_tweet(self.submission.text)
+            if self.submission.image:
+                tweeter.send_tweet(self.submission.text, img_path=self.submission.image.path)
+            else:
+                tweeter.send_tweet(self.submission.text)
             self.submission.sent = True
             self.submission.save()
             TweetLogger.success(self.submission.text)

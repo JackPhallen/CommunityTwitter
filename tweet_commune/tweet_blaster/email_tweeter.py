@@ -1,4 +1,7 @@
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 
 
 class EmailTweeter:
@@ -24,20 +27,37 @@ class EmailTweeter:
         connection.login(self._config.email, self._config.password)
         return connection
 
-    def _format(self, body):
+    def _format(self, body, img_path=None):
         """
         Format email
-        :param body: Body of the email
-        :return:
-        """
-        return "Subject: {0}\n\n{1}".format(self._config.subject, body).encode('utf-8')
 
-    def send_tweet(self, tweet):
+        :param body: Body of the email
+        :param img_path: path to image attachment
+        """
+        msg = MIMEMultipart()
+        msg['Subject'] = self._config.subject
+
+        msg['From'] = self._config.email
+        msg['To'] = self._config.recipient
+
+        msg.attach(MIMEText(body))
+
+        # if image provided, attach
+        if img_path:
+            with open(img_path, 'rb') as img:
+                mime_img = MIMEImage(img.read())
+                msg.attach(mime_img)
+
+        return msg.as_string()
+
+    def send_tweet(self, tweet, img_path=None):
         """
         Send email to trigger tweet
+
         :param tweet: content of the tweet
+        :param img_path: path to image attachment
         """
-        email_content = self._format(tweet)
+        email_content = self._format(tweet, img_path)
         connection = self._get_connection()
         connection.sendmail(self._config.email, self._config.recipient, email_content)
         connection.quit()
