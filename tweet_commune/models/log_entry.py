@@ -1,11 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-_LEVELS = {
-    (1, "INFO"),
-    (2, "WARN"),
-    (3, "ERROR")
-}
+
+_LEVELS = [(1, 'INFO'), (3, 'ERROR'), (2, 'WARN')]
 
 
 class LogManager(models.Manager):
