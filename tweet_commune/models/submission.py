@@ -26,10 +26,11 @@ class SubmissionManager(models.Manager):
 
 
 class Submission(models.Model):
-    text = models.CharField(_("Text"), max_length=240)
+    text = models.CharField(_("Text"), max_length=240, blank=True)
     date_created = models.DateTimeField(_("Date Created"), auto_now_add=True)
     sent = models.BooleanField(_("Was Posted"), default=False, editable=False)
     votes = models.IntegerField(_("Votes"), default=0, editable=False)
+    image = models.ImageField(upload_to='image_submissions', blank=True)
 
     objects = models.Manager()
     queue = SubmissionManager()
@@ -37,7 +38,6 @@ class Submission(models.Model):
     class Meta:
         verbose_name = _("Submission")
         verbose_name_plural = _("Submissions")
-
 
     def __unicode__(self):
         return smart_text(self.text)
