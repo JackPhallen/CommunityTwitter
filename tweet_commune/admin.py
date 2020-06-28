@@ -5,6 +5,7 @@ from .forms import SubmissionModelForm
 
 class SubmissionAdmin( admin.ModelAdmin ):
     form = SubmissionModelForm
+    list_display = ('text',)
 
 
 admin.site.register(Submission, SubmissionAdmin)
