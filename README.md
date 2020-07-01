@@ -30,5 +30,15 @@ To run a local version of the site, run the following:
 python3 manage.py runserver
 ```
 
+## Creating a build
+
+To create a build, run the following:
+
+```bash
+python3 setup.py bdist_wheel
+```
+
+This command will create a distribution in the `dist/` directory.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
