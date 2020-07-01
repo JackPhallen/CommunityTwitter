@@ -1,0 +1,8 @@
+# PyCharm config
+.idea/
+
+# The generated database
+db.sqlite3
+
+# Unnecessary pycache junk
+__pycache__
