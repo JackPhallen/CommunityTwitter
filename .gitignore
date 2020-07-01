@@ -6,3 +6,9 @@ db.sqlite3
 
 # Unnecessary pycache junk
 __pycache__
+
+# don't upload distributions
+dist/
+
+# ignore more generated distribution info
+tweet_commune.egg-info/
