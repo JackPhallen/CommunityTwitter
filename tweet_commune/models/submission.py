@@ -29,6 +29,7 @@ class Submission(models.Model):
     text = models.CharField(_("Text"), max_length=240, blank=True)
     date_created = models.DateTimeField(_("Date Created"), auto_now_add=True)
     sent = models.BooleanField(_("Was Posted"), default=False, editable=False)
+    date_sent = models.DateTimeField(_("Date Posted"), editable=False, null=True)
     votes = models.IntegerField(_("Votes"), default=0, editable=False)
     image = models.ImageField(upload_to='image_submissions', blank=True)
 
