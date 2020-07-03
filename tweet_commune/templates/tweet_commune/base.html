@@ -3,9 +3,16 @@
 {# Extend sitewide base template head #}
 {% block head %}
     {{ block.super }}
+
+    {# Make content responsive #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 {% endblock head %}
 
 {# Extend sitewide base template content #}
 {% block content %}
     {{ block.super }}
+
+    {% include 'tweet_commune/fragments/navbar.html' %}
+
 {% endblock content %}

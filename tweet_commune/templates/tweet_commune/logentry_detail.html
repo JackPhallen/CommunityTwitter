@@ -6,11 +6,14 @@
 {% block content %}
     {{ block.super }}
 
+
     <div class="card my-5">
+
         <div class="card-header">
             <h2 class="card-title">{{ logentry.get_level_display }} Message </h2>
             <p class="text-muted"> {{ logentry.timestamp }} </p>
         </div>
+
         <div class="card-body">
 
             <p class="card-text">
@@ -18,9 +21,10 @@
             </p>
 
         </div>
+
     </div>
 
-    <a class="btn btn-primary" href="{% url 'home' %}" role="button">Home</a>
-    <a class="btn btn-primary" href="{% url 'logentry_list' %}" role="button">Logs</a>
+
+    <a class="btn btn-primary" href="{% url 'logentry_list' %}" role="button">< Back</a>
 
 {% endblock content %}
