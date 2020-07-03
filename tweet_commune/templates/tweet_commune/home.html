@@ -1,7 +1,10 @@
-{% extends "base.html" %}
+{% extends "tweet_commune/base.html" %}
 
+{# Extend tweet_commune base template content #}
 {% block content %}
+    {{ block.super }}
 
+    {# Display tweet blaster status warning #}
     {% include 'tweet_commune/fragments/status_warning.html' %}
 
     <div class="jumbotron">

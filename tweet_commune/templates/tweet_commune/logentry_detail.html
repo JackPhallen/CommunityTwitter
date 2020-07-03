@@ -1,6 +1,10 @@
-{% extends "base.html" %}
+{% extends "tweet_commune/base.html" %}
 
+{% load bootstrap4 %}
+
+{# Extend tweet_commune base template content #}
 {% block content %}
+    {{ block.super }}
 
     <div class="card my-5">
         <div class="card-header">

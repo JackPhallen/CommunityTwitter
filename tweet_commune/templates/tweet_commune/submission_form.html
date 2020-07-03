@@ -1,9 +1,10 @@
-{% extends "base.html" %}
+{% extends "tweet_commune/base.html" %}
 
 {% load bootstrap4 %}
 
-
+{# Extend tweet_commune base template content #}
 {% block content %}
+    {{ block.super }}
 
     {% bootstrap_messages %}
 
