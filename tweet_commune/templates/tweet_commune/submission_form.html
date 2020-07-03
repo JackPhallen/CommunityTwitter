@@ -1,21 +1,26 @@
-{% extends "base.html" %}
+{% extends "tweet_commune/base.html" %}
 
 {% load bootstrap4 %}
 
-
+{# Extend tweet_commune base template content #}
 {% block content %}
+    {{ block.super }}
 
-    {% bootstrap_messages %}
+    <div id="page" class="container-fluid m-2">
 
-    <h2>Enter Tweet below:</h2>
+        {% bootstrap_messages %}
 
-    <form method="post" enctype="multipart/form-data" class="form">
-        {% csrf_token %}
-        {% bootstrap_form form %}
+        <h2>Enter Tweet below:</h2>
 
-        {% buttons %}
-            <button type="submit" value="Save" class="btn btn-primary">Submit</button>
-        {% endbuttons %}
-    </form>
+        <form method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+            {% endbuttons %}
+        </form>
+
+    </div>
 
 {% endblock content %}

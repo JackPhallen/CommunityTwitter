@@ -1,61 +1,69 @@
-{% extends "base.html" %}
+{% extends "tweet_commune/base.html" %}
 
+{# Extend tweet_commune base template content #}
 {% block content %}
+    {{ block.super }}
 
+    {# Display tweet blaster status warning #}
     {% include 'tweet_commune/fragments/status_warning.html' %}
 
-    <div class="jumbotron">
-
-        <h1 class="display-4">The Tweet Commune</h1>
-        <h2>
-
-	    <a href="https://twitter.com/OurCommune?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @OurCommune</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </h2>
-
-        <hr class="my-4">
-
-        <p class="lead">
-            Welcome to The Tweet Commune, a Twitter account that belongs to everyone! A submitted tweet will be
-            posted to the account every 30 minutes. Click the button below to make a new submission!
-        </p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{% url 'submission_new' %}" role="button">New Submission</a>
-        </p>
-
-    </div>
+    <div id="page" class="container-fluid m-2">
 
 
+        <div class="jumbotron">
 
-    <div class="card my-5">
-        <div class="card-header">
-            <h2 class="card-title">Queue Info</h2>
-        </div>
+            <h1 class="display-4">The Tweet Commune</h1>
+            <h2>
 
-        <div class="card-body">
+                <a href="https://twitter.com/OurCommune?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                   data-size="large" data-dnt="true" data-show-count="false">Follow @OurCommune</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </h2>
 
-            <p class="card-text">
-                {% if queue_length > 1 %}
-                    There are currently <u>{{ queue_length }}</u> Tweets in the queue.
-                {% else %}
-                    There is currently <u>{{ queue_length }}</u> Tweet in the queue.
-                {% endif %}
+            <hr class="my-4">
+
+            <p class="lead">
+                Welcome to The Tweet Commune, a Twitter account that belongs to everyone! A submitted tweet will be
+                posted to the account every 30 minutes. Click the button below to make a new submission!
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{% url 'submission_new' %}" role="button">New Submission</a>
             </p>
 
         </div>
 
-    </div>
+        <div class="card my-5">
+            <div class="card-header">
+                <h2 class="card-title">Queue Info</h2>
+            </div>
 
+            <div class="card-body">
 
-    <div class="card my-5">
-        <div class="card-header">
-            <h2 class="card-title">Logs</h2>
-            <a href="{% url 'logentry_list' %}"> View More </a>
+                <p class="card-text">
+                    {% if queue_length > 1 %}
+                        There are currently <u>{{ queue_length }}</u> Tweets in the queue.
+                    {% else %}
+                        There is currently <u>{{ queue_length }}</u> Tweet in the queue.
+                    {% endif %}
+                </p>
+
+            </div>
+
         </div>
-        <div class="card-body">
 
-            {% include 'tweet_commune/fragments/log_table.html' %}
+        <div class="card my-5">
+            <div class="card-header">
+                <h2 class="card-title">Logs</h2>
+                <a href="{% url 'logentry_list' %}"> View More </a>
+            </div>
+            <div class="card-body">
 
+                {% include 'tweet_commune/fragments/log_table.html' %}
+
+            </div>
         </div>
+
+
     </div>
 
 {% endblock content %}

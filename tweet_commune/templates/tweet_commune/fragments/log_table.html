@@ -4,22 +4,22 @@
         <th scope="col">Level</th>
         <th scope="col">Timestamp</th>
         <th scope="col">Message</th>
-        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
 
     {% for entry in log_entries %}
 
-        <tr class="{{ entry.row_class }}">
+        {# Make each row a clickable link to details page #}
+        <tr
+                class="{{ entry.row_class }}"
+                onclick="window.location = '{% url 'logentry_detail' entry.id %}';"
+                style="cursor: pointer;"
+        >
             <th scope="row"><u> {{ entry.get_level_display }} </u></th>
             <td>{{ entry.timestamp }}</td>
+            {# Truncate text to fit in cell #}
             <td>{{ entry.message | truncatechars:75 }}</td>
-            <td>
-                <a href="{% url 'logentry_detail' entry.id %}" class="badge badge-pill badge-dark">
-                    Details
-                </a>
-            </td>
         </tr>
 
     {% endfor %}
