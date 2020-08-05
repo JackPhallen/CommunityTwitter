@@ -1,9 +1,8 @@
 import datetime
 import pytz
 
-from tweet_commune.tweet_blaster import _CONFIG_PATH, _PROFILE, _IMG_PROFILE
-from tweet_commune.tweet_blaster.email_config import EmailConfig
-from tweet_commune.tweet_blaster.email_tweeter import EmailTweeter
+from .twitter_api import TwitterAPI
+from .twitter_settings import *
 from .logger.tweet_logger import TweetLogger
 
 
@@ -22,14 +21,11 @@ class SubmissionActions:
         Posts a submission to Twitter
         """
         try:
+            api = TwitterAPI(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET)
             if self.submission.image:
-                config = EmailConfig(_CONFIG_PATH, _IMG_PROFILE)
-                tweeter = EmailTweeter(config)
-                tweeter.send_tweet(self.submission.text, img_path=self.submission.image.path)
+                api.post(self.submission.text, img_paths=[self.submission.image.path, ])
             else:
-                config = EmailConfig(_CONFIG_PATH, _PROFILE)
-                tweeter = EmailTweeter(config)
-                tweeter.send_tweet(self.submission.text)
+                api.post(self.submission.text)
             self.submission.sent = True
             self.submission.date_sent = SubmissionActions.TZ.localize(datetime.datetime.now())
             self.submission.save()
