@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from tweet_commune.submission_actions import SubmissionActions
 from ...logger.tweet_logger import TweetLogger
 from ...models.submission import Submission
+from ...raffle import Raffle
 
 
 class Command(BaseCommand):
@@ -14,7 +15,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            submission = Submission.queue.top()
+            raffle = Raffle(multiplier=5)
+            submission = raffle.choices(Submission.queue.all())
             if submission:
                 actions = SubmissionActions(submission)
                 actions.post()
