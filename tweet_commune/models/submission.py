@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.utils.encoding import smart_text
 from django.utils.translation import ugettext_lazy as _
 
+from tweet_commune.twitter_settings import MAX_CHAR_COUNT
+
 
 class SubmissionManager(models.Manager):
     """
@@ -26,7 +28,7 @@ class SubmissionManager(models.Manager):
 
 
 class Submission(models.Model):
-    text = models.CharField(_("Text"), max_length=240, blank=True)
+    text = models.CharField(_("Text"), max_length=MAX_CHAR_COUNT, blank=True)
     date_created = models.DateTimeField(_("Date Created"), auto_now_add=True)
     sent = models.BooleanField(_("Was Posted"), default=False, editable=False)
     date_sent = models.DateTimeField(_("Date Posted"), editable=False, null=True)
