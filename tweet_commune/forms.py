@@ -1,11 +1,14 @@
 from django import forms
 
 from tweet_commune.models.submission import Submission
-from tweet_commune.twitter_settings import MAX_IMAGE_CHAR_COUNT
+from tweet_commune.twitter_settings import MAX_IMAGE_CHAR_COUNT, MAX_IMAGE_SIZE
 
 
 _EMPTY_SUBMISSION_MESSAGE = "Submission cannot be empty!"
 _CAPTION_LENGTH_ERROR = "Image captions cannot be longer than {0} character!".format(MAX_IMAGE_CHAR_COUNT)
+_IMAGE_SIZE_ERROR = "Image is too big, must be less than {0} MB".format(
+    MAX_IMAGE_SIZE / 1000000
+)
 
 
 class SubmissionModelForm(forms.ModelForm):
@@ -33,8 +36,15 @@ class SubmissionModelForm(forms.ModelForm):
                 _EMPTY_SUBMISSION_MESSAGE
             )
 
-        # Ensure text accompanying an image is not too long
-        if image and len(text) >= MAX_IMAGE_CHAR_COUNT:
-            raise forms.ValidationError(
-                _CAPTION_LENGTH_ERROR
-            )
+        if image:
+            # Ensure text accompanying an image is not too long
+            if len(text) >= MAX_IMAGE_CHAR_COUNT:
+                raise forms.ValidationError(
+                    _CAPTION_LENGTH_ERROR
+                )
+            # Ensure image does not exceed max allowed size
+            if image.size >= MAX_IMAGE_SIZE:
+                raise forms.ValidationError(
+                    _IMAGE_SIZE_ERROR
+                )
+
