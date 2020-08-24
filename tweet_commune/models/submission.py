@@ -9,6 +9,16 @@ class SubmissionManager(models.Manager):
     Custom model manager for Submission to interact with Submissions as a queue
     """
 
+    def length(self, date=None):
+        if not date:
+            return self.get_queryset().count()
+        else:
+            # Get all Submissions created before date
+            created = Submission.objects.all().filter(date_created__lte=date)
+            # Get all Submissions posted before date
+            posted = created.filter(date_sent__lte=date)
+            return created.count() - posted.count()
+
     def get_queryset(self):
         """
         Override get_queryset to return Submissions not yet posted ordered by date
