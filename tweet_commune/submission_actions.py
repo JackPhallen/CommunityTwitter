@@ -2,8 +2,8 @@ import datetime
 import pytz
 
 from .twitter_api import TwitterAPI
-from .twitter_settings import *
 from .logger.tweet_logger import TweetLogger
+from database_settings.settings_manager import SettingsManager
 
 
 class SubmissionActions:
@@ -21,7 +21,12 @@ class SubmissionActions:
         Posts a submission to Twitter
         """
         try:
-            api = TwitterAPI(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET)
+            api = TwitterAPI(
+                SettingsManager.get_value('consumer_key'),
+                SettingsManager.get_value('consumer_secret'),
+                SettingsManager.get_value('access_key'),
+                SettingsManager.get_value('access_secret'),
+            )
             if self.submission.image:
                 api.post(self.submission.text, img_paths=[self.submission.image.path, ])
             else:

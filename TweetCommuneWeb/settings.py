@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'database_settings.apps.DatabaseSettingsConfig',
     'tweet_commune.apps.TweetcommuneConfig'
 ]
 
