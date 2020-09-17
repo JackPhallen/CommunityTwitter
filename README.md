@@ -16,6 +16,9 @@ Now clone the repository to your local machine. In the root of the repository, i
 pip install -r requirements.txt
 ```
 
+If you're having issues creating a Postgres database try copying the
+[original SQLite configuration](https://choosealicense.com/licenses/mit/).
+
 Make the necessary database migrations by running:
 
 ```bash
