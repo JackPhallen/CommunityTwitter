@@ -1,0 +1,71 @@
+{% extends "tweet_commune/base.html" %}
+
+{% block head %}
+    {{ block.super }}
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+      const QUEUE_DATA = JSON.parse('{{ queue_history | escapejs }}');
+      const QUEUE_HEADERS = ['Date', 'Queue Length'];
+
+      const SUBMISSION_DATA = JSON.parse('{{ submission_data | escapejs }}');
+      const SUBMISSION_HEADERS = ['Date', 'Submissions'];
+
+      function drawCharts() {
+          drawQueueChart();
+          drawSubmissionChart();
+      }
+
+      function drawQueueChart() {
+        let data = google.visualization.arrayToDataTable(
+            [QUEUE_HEADERS, ...QUEUE_DATA]
+        );
+
+        let options = {
+          title: 'Historic Queue Length',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        let chart = new google.visualization.LineChart(document.getElementById('queue_length_chart'));
+
+        chart.draw(data, options);
+      }
+
+      function drawSubmissionChart() {
+        let data = google.visualization.arrayToDataTable(
+            [SUBMISSION_HEADERS, ...SUBMISSION_DATA]
+        );
+
+        let options = {
+          title: 'Submissions Per Day',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        let chart = new google.visualization.LineChart(document.getElementById('submission_data_chart'));
+
+        chart.draw(data, options);
+      }
+
+
+    </script>
+
+{% endblock head %}
+
+{# Extend tweet_commune base template content #}
+{% block content %}
+    {{ block.super }}
+
+    <div id="page" class="container-fluid m-2">
+
+        <div id="queue_length_chart" style="width: 900px; height: 500px"></div>
+
+        <div id="submission_data_chart" style="width: 900px; height: 500px"></div>
+
+    </div>
+
+{% endblock content %}
