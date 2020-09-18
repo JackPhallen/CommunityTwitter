@@ -17,8 +17,8 @@
                 <a class="nav-link" href="{% url 'submission_new' %}">New Submission</a>
             </li>
 
-            <li class="nav-item {% if request.resolver_match.url_name == 'queue_data' %} active {% endif %}">
-                <a class="nav-link" href="{% url 'queue_data' %}">Data</a>
+            <li class="nav-item {% if request.resolver_match.url_name == 'data' %} active {% endif %}">
+                <a class="nav-link" href="{% url 'data' %}">Data</a>
             </li>
 
             {# Include active class if user currently on that page #}

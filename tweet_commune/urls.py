@@ -1,11 +1,11 @@
 from django.urls import path
 
-from .views import submission, home, log, queue_data
+from .views import submission, home, log, data
 
 urlpatterns = [
     path('', home.HomeView.as_view(), name="home"),
     path('new/', submission.SubmissionCreateView.as_view(), name="submission_new"),
     path('log/', log.LogListView.as_view(), name="logentry_list"),
     path('log/<slug:pk>', log.LogDetailView.as_view(), name="logentry_detail"),
-    path('data', queue_data.QueueDataView.as_view(), name="queue_data")
+    path('data', data.DataView.as_view(), name="data")
 ]
