@@ -8,6 +8,7 @@ from .forms import SubmissionModelForm
 class SubmissionAdmin( admin.ModelAdmin ):
     form = SubmissionModelForm
     list_display = ('sent', 'flagged', 'text')
+    list_filter = ('sent', 'flagged')
     actions = ['flag_submission', 'unflag_submission']
 
     def flag_submission(self, request, queryset):
