@@ -26,7 +26,7 @@ class SubmissionManager(models.Manager):
         Override get_queryset to return Submissions not yet posted ordered by date
         :return:
         """
-        return super().get_queryset().filter(sent=False).order_by('date_created')
+        return super().get_queryset().filter(sent=False, flagged=False).order_by('date_created')
 
     def top(self):
         """
@@ -44,6 +44,7 @@ class Submission(models.Model):
     date_sent = models.DateTimeField(_("Date Posted"), editable=False, null=True)
     votes = models.IntegerField(_("Votes"), default=0, editable=False)
     image = models.ImageField(upload_to='image_submissions', blank=True)
+    flagged = models.BooleanField(_("Flagged"), default=False, editable=False)
 
     objects = models.Manager()
     queue = SubmissionManager()
