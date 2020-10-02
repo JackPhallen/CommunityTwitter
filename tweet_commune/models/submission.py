@@ -52,6 +52,9 @@ class Submission(models.Model):
     class Meta:
         verbose_name = _("Submission")
         verbose_name_plural = _("Submissions")
+        permissions = [
+            ('flag', "Can flag submissions"),
+            ('unflag', "Can unflag submissions")]
 
     def __unicode__(self):
         return smart_text(self.text)
