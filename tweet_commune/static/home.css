@@ -1,0 +1,14 @@
+#countdownTimer {
+  color: #007bff;
+  font-size: 18px;
+}
+
+.countdown-container {
+  display: inline;
+  font-size: 18px;
+  margin-left: 18px;
+}
+
+.countdown-header {
+  margin-left: 2px;
+}
