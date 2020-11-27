@@ -1,9 +1,7 @@
 from django.views.generic import TemplateView
 from django.core.serializers.json import DjangoJSONEncoder
-from django.core import serializers
 
 import json
-
 from tweet_commune.models.log_entry import LogEntry
 from tweet_commune.models.submission import Submission
 
