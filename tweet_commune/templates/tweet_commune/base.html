@@ -3,6 +3,10 @@
 {# Extend sitewide base template head #}
 {% block head %}
     {{ block.super }}
+    {# Tab icon #}
+    {% load static %}
+
+    <link rel="shortcut icon" type="image/png" href="{% static '/tabIcon.png' %}"/>
 
     {# Make content responsive #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

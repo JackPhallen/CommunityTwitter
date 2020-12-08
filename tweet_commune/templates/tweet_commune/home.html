@@ -1,5 +1,15 @@
 {% extends "tweet_commune/base.html" %}
 
+{% block head %}
+    {{ block.super }}
+    {% load static %}
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static '/jquery.plugin.js' %}"></script> 
+    <script type="text/javascript" src="{% static '/jquery.countdown.js' %} "></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/home.css' %}">
+{% endblock head %}
+
 {# Extend tweet_commune base template content #}
 {% block content %}
     {{ block.super }}
@@ -35,6 +45,26 @@
         <div class="card my-5">
             <div class="card-header">
                 <h2 class="card-title">Queue Info</h2>
+                <div class="countdown-container">
+                    <div class="countdown-header">Until next tweet:
+                          <span id="countdownTimer"> </span>
+                    </div>
+                    
+                    
+                </div>
+                {# Check for timing of the last recorded log, start a countdown clock for twenty minutes from that time #}
+                <script type="text/javascript">
+                    const TWEET_DELAY_MS = 20 * 60 * 1000
+                    const last_posted = {{ last_log | safe}};
+                    var nextTweet = Date.parse(new Date(last_posted)); 
+                    nextTweet = nextTweet + TWEET_DELAY_MS
+
+                    if(nextTweet > Date.now()){
+                        var ctd = document.getElementById('countdownTimer');
+                        jQuery('#countdownTimer').countdown({until: new Date(nextTweet), format: 'MS', compact: true}); 
+                    }
+                </script>
+               
             </div>
 
             <div class="card-body">
