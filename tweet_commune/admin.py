@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_permission_codename
 
 from tweet_commune.models.submission import Submission
+from tweet_commune.models.filter_words import FilterWord
 from .forms import SubmissionModelForm
 
 
@@ -34,4 +35,9 @@ class SubmissionAdmin( admin.ModelAdmin ):
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
 
+class FilterWordAdmin( admin.ModelAdmin ):
+    list_display = ('enabled', 'words')
+
+
 admin.site.register(Submission, SubmissionAdmin)
+admin.site.register(FilterWord, FilterWordAdmin)
