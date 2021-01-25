@@ -3,6 +3,7 @@ import pytz
 
 from .twitter_api import TwitterAPI
 from .logger.tweet_logger import TweetLogger
+from tweet_commune.submission_validator import SubmissionValidator
 from database_settings.settings_manager import SettingsManager
 
 
@@ -15,6 +16,20 @@ class SubmissionActions:
 
     def __init__(self, submission):
         self.submission = submission
+
+    def validate(self):
+        """
+        Validate a Submission (returns True if valid)
+        """
+        validator = SubmissionValidator()
+        return validator.validate(self.submission)
+
+    def flag(self):
+        """
+        Flag a submission as inappropriate
+        """
+        self.submission.flagged = True
+        self.submission.save()
 
     def post(self):
         """
