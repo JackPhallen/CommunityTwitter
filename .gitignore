@@ -12,3 +12,7 @@ dist/
 
 # ignore more generated distribution info
 tweet_commune.egg-info/
+
+# is for me
+Pipfile
+Pipfile.lock
