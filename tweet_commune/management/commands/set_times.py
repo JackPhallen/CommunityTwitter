@@ -13,9 +13,9 @@ class Command(BaseCommand):
 
     help = "Retroactively set Submission sent time"
 
-    START_TIME = datetime.time(hour=10)
-    END_TIME = datetime.time(hour=21, minute=30)
-    POST_FREQ_MINS = 30
+    START_TIME = datetime.time(hour=9)
+    END_TIME = datetime.time(hour=22, minute=30)
+    POST_FREQ_MINS = 25
     TZ = pytz.timezone('US/Eastern')
 
     def handle(self, *args, **options):
@@ -37,7 +37,7 @@ class Command(BaseCommand):
         :param current: Time a tweet was posted
         :return: datetime representing the previous tweet time
         """
-        next_datetime = current - datetime.timedelta(minutes=30)
+        next_datetime = current - datetime.timedelta(minutes=25)
         if next_datetime.time() < Command.START_TIME:
             next_day = next_datetime - datetime.timedelta(days=1)
             next_datetime = datetime.datetime.combine(next_day, Command.END_TIME)
@@ -46,7 +46,7 @@ class Command(BaseCommand):
     @staticmethod
     def now_rounded():
         """
-        Rounds down to nearest 30 minutes
+        Rounds down to nearest 25 minutes
         """
         now = datetime.datetime.now()
         return now - datetime.timedelta(minutes=now.minute % Command.POST_FREQ_MINS,
